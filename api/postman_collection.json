@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "c9c8e54-6924-4b5a-bb78-f7182f1c7fa4",
+		"name": "Multi-Tenant Auth Library API",
+		"description": "完整的多租户认证和权限管理API集合，包含用户认证、工作空间管理、团队管理、权限系统等所有接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🔐 认证相关",
+			"item": [
+				{
+					"name": "用户注册",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"securepassword123\",\n  \"personal_info\": {\n    \"name\": \"用户姓名\",\n    \"avatar_url\": \"https://example.com/avatar.jpg\",\n    \"phone\": \"+86-13800138000\",\n    \"bio\": \"产品经理，10年互联网经验\",\n    \"timezone\": \"Asia/Shanghai\",\n    \"language\": \"zh-CN\"\n  },\n  \"settings\": {\n    \"theme\": \"dark\",\n    \"email_notifications\": true,\n    \"push_notifications\": true\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/register/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "注册成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/register/"
+								}
+							},
+							"status": "OK",
+							"code": 201,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, max-age=0"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							},
+								{
+									"key": "Set-Cookie",
+									"value": "refresh_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"注册成功\",\n  \"user\": {\n    \"id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"email\": \"user@example.com\",\n    \"personal_info\": {\n      \"name\": \"用户姓名\",\n      \"avatar_url\": \"https://example.com/avatar.jpg\",\n      \"phone\": \"+86-13800138000\",\n      \"bio\": \"产品经理，10年互联网经验\",\n      \"timezone\": \"Asia/Shanghai\",\n      \"language\": \"zh-CN\"\n    },\n    \"settings\": {\n      \"theme\": \"dark\",\n      \"email_notifications\": true,\n      \"push_notifications\": true\n    },\n    \"is_active\": true,\n    \"created_at\": \"2024-12-02T10:30:00Z\",\n    \"last_login_at\": null\n  },\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\",\n  \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "用户登录",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"securepassword123\",\n  \"remember\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "登录成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/login/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							},
+								{
+									"key": "Set-Cookie",
+									"value": "refresh_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"登录成功\",\n  \"user\": {\n    \"id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"email\": \"user@example.com\",\n    \"personal_info\": {\n      \"name\": \"用户姓名\",\n      \"avatar_url\": \"https://example.com/avatar.jpg\"\n    },\n    \"settings\": {\n      \"theme\": \"dark\",\n      \"email_notifications\": true\n    },\n    \"is_active\": true,\n    \"created_at\": \"2024-12-02T10:30:00Z\",\n    \"last_login_at\": \"2024-12-02T10:30:00Z\"\n  },\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\",\n  \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "刷新Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/refresh/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Token刷新成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/refresh/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							},
+								{
+									"key": "Set-Cookie",
+									"value": "refresh_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+								"HttpOnly"
+							}
+							],
+							"body": "{\n  \"success\": true,\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\",\n  \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "用户登出",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/logout/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "登出成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/logout/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"登出成功\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "获取用户信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/profile/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取用户信息成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/profile/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"user\": {\n    \"id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"email\": \"user@example.com\",\n    \"personal_info\": {\n      \"name\": \"用户姓名\",\n      \"avatar_url\": \"https://example.com/avatar.jpg\",\n      \"phone\": \"+86-13800138000\",\n      \"bio\": \"产品经理，10年互联网经验\",\n      \"timezone\": \"Asia/Shanghai\",\n      \"language\": \"zh-CN\"\n    },\n    \"settings\": {\n      \"theme\": \"dark\",\n      \"email_notifications\": true,\n      \"push_notifications\": true\n    },\n    \"is_active\": true,\n    \"created_at\": \"2024-12-02T10:30:00Z\",\n    \"last_login_at\": \"2024-12-02T10:30:00Z\"\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🏢 工作空间管理",
+			"item": [
+				{
+					"name": "获取工作空间列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/workspaces/?page=1&limit=20&search=项目",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取工作空间列表成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/workspaces/?page=1&limit=20&search=项目"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"data\": {\n    \"workspaces\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"name\": \"我的项目\",\n        \"slug\": \"my-project\",\n        \"description\": \"这是一个项目描述\",\n        \"workspace_type\": \"personal\",\n        \"visibility\": \"private\",\n        \"owner_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"team_id\": null,\n        \"user_role\": \"owner\",\n        \"user_permissions\": [\"view\", \"edit\", \"delete\", \"share\", \"admin\"],\n        \"member_count\": 1,\n        \"created_at\": \"2024-12-02T10:30:00Z\",\n        \"updated_at\": \"2024-12-02T11:00:00Z\"\n      },\n      {\n        \"id\": \"660e8400-e29b-41d4-a716-4466554404\",\n        \"name\": \"团队项目\",\n        \"slug\": \"team-project\",\n        \"description\": \"团队协作项目\",\n        \"workspace_type\": \"team\",\n        \"visibility\": \"team\",\n        \"owner_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"team_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"user_role\": \"admin\",\n        \"user_permissions\": [\"view\", \"edit\", \"delete\", \"share\"],\n        \"member_count\": 15,\n        \"created_at\": \"2024-12-02T09:00:00Z\",\n        \"updated_at\": \"2024-12-02T10:00:00Z\"\n      }\n    ],\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"total_count\": 2,\n      \"page_size\": 20,\n      \"has_next\": false,\n      \"has_prev\": false\n    }\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "创建工作空间",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"新工作空间\",\n  \"slug\": \"new-workspace\",\n  \"description\": \"新的工作空间描述\",\n  \"workspace_type\": \"team\",\n  \"team_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"visibility\": \"team\",\n  \"settings\": {\n    \"allow_public_view\": false,\n    \"allow_comments\": true,\n    \"allow_sharing\": true,\n    \"default_member_role\": \"viewer\",\n    \"require_approval\": false,\n    \"max_members\": 100\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/workspaces/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "工作空间创建成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/workspaces/"
+								}
+							},
+							"status": "OK",
+							"code": 201,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"工作空间创建成功\",\n  \"workspace\": {\n    \"id\": \"770e8400-e29b-41d4-a716-4466554405\",\n    \"name\": \"新工作空间\",\n    \"slug\": \"new-workspace\",\n    \"description\": \"新的工作空间描述\",\n    \"workspace_type\": \"team\",\n    \"visibility\": \"team\",\n    \"owner_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"team_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"created_at\": \"2024-12-02T10:45:00Z\",\n    \"updated_at\": \"2024-12-02T10:45:00Z\"\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔐 权限管理",
+			"item": [
+				{
+					"name": "检查用户权限",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"workspace_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"action\": \"edit\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/permissions/check/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "权限检查成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/permissions/check/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"has_permission\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "批量权限检查",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"workspace_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"actions\": [\"view\", \"edit\", \"delete\", \"share\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/permissions/check/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "批量权限检查成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/permissions/check/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"permissions\": {\n    \"view\": true,\n    \"edit\": true,\n    \"delete\": false,\n    \"share\": true\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "授予权限",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"workspace_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"actions\": [\"view\", \"edit\", \"share\"],\n  \"expires_at\": \"2024-12-31T23:59:59Z\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/permissions/grant/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "权限授予成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/permissions/grant/"
+								}
+							},
+							"status": "OK",
+							"code": 201,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"权限授予成功\",\n  \"granted_permissions\": {\n    \"user_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"workspace_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"actions\": [\"view\", \"edit\", \"share\"],\n    \"granted_by\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"granted_at\": \"2024-12-02T11:00:00Z\",\n    \"expires_at\": \"2024-12-31T23:59:59Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "撤销权限",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"workspace_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"actions\": [\"delete\", \"admin\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/permissions/revoke/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "权限撤销成功",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/permissions/revoke/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"权限撤销成功\"\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "👥 团队管理",
+			"item": [
+				{
+					"name": "获取团队列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/teams/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取团队列表成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/teams/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"data\": {\n    \"teams\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"name\": \"开发团队\",\n        \"slug\": \"dev-team\",\n        \"description\": \"负责产品开发的技术团队\",\n        \"owner_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n        \"billing_tier\": \"pro\",\n        \"member_count\": 25,\n        \"workspace_count\": 8,\n        \"user_role\": \"owner\",\n        \"created_at\": \"2024-12-02T09:00:00Z\",\n        \"updated_at\": \"2024-12-02T10:00:00Z\"\n      }\n    ]\n  },\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"total_count\": 1,\n      \"page_size\": 20,\n      \"has_next\": false,\n      \"has_prev\": false\n    }\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "创建团队",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"新团队\",\n  \"slug\": \"new-team\",\n  \"description\": \"新的技术团队\",\n  \"billing_tier\": \"pro\",\n  \"settings\": {\n    \"max_members\": 50,\n    \"allow_public_workspaces\": false\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/teams/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "团队创建成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/teams/"
+								}
+							},
+							"status": "OK",
+							"code": 201,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"团队创建成功\",\n  \"team\": {\n    \"id\": \"770e8400-e29b-41d4-a716-4466554406\",\n    \"name\": \"新团队\",\n    \"slug\": \"new-team\",\n    \"description\": \"新的技术团队\",\n    \"owner_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"billing_tier\": \"pro\",\n    \"member_count\": 0,\n    \"workspace_count\": 0,\n    \"created_at\": \"2024-12-02T10:45:00Z\",\n    \"updated_at\": \"2024-12-02T10:45:00Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "邀请团队成员",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"team_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n  \"email\": \"newmember@example.com\",\n  \"role\": \"editor\",\n  \"message\": \"欢迎加入我们的开发团队！\"\n  }"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/teams/550e8400-e29b-41d4-a716-4466554403/invite/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "邀请发送成功",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/teams/550e8400-e29b-41d4-a716-4466554403/invite/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"message\": \"邀请已发送\",\n  \"invitation\": {\n    \"id\": \"770e8400-e29b-41d4-a716-4466554407\",\n    \"team_id\": \"550e8400-e29b-41d4-a716-4466554403\",\n    \"email\": \"newmember@example.com\",\n    \"role\": \"editor\",\n    \"role_name\": \"编辑者\",\n    \"token\": \"invite-token-abc123\",\n    \"expires_at\": \"2024-12-09T10:00:00Z\",\n    \"invited_at\": \"2024-12-02T10:30:00Z\"\n  }\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "📊 系统管理",
+			"item": [
+				{
+					"name": "健康检查",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/health/"
+						}
+					},
+					"response": [
+						{
+							"name": "健康检查成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/health/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"status\": \"healthy\",\n  \"version\": \"1.0.0\",\n  \"timestamp\": \"2024-12-02T10:30:00Z\",\n  \"services\": {\n    \"database\": {\n      \"status\": \"healthy\",\n      \"response_time\": 15\n    },\n    \"cache\": {\n      \"status\": \"healthy\",\n      \"response_time\": 2\n    },\n    \"jwt\": {\n      \"status\": \"healthy\",\n      \"algorithm\": \"HS256\"\n    },\n    \"metrics\": {\n      \"total_users\": 1250,\n      \"total_workspaces\": 342,\n      \"total_teams\": 45,\n      \"active_sessions\": 156,\n      \"uptime\": 86400\n    }\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "系统配置",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/config/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "系统配置获取成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/config/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"config\": {\n    \"available_permissions\": [\"view\", \"edit\", \"delete\", \"share\", \"admin\"],\n    \"default_roles\": {\n      \"owner\": [\"view\", \"edit\", \"delete\", \"share\", \"admin\"],\n      \"admin\": [\"view\", \"edit\", \"delete\", \"share\", \"admin\"],\n      \"editor\": [\"view\", \"edit\", \"share\"],\n      \"viewer\": [\"view\"],\n      \"commenter\": [\"view\", \"comment\"]\n    },\n    \"workspace_types\": [\"personal\", \"team\"],\n    \"visibility_options\": [\"private\", \"team\", \"public\"],\n    \"file_upload_limits\": {\n      \"max_file_size\": 10485760,\n      \"allowed_file_types\": [\".pdf\", \".doc\", \".docx\", \".jpg\", \".png\"],\n      \"max_files_per_upload\": 10\n    }\n  }\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "用户统计",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/user/stats/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "用户统计获取成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/user/stats/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"stats\": {\n    \"total_workspaces\": 15,\n    \"owned_workspaces\": 8,\n    \"joined_workspaces\": 7,\n    \"total_teams\": 3,\n    \"owned_teams\": 2,\n    \"total_members\": 45,\n    \"active_members\": 38,\n    \"pending_invitations\": 3,\n    \"recent_activities\": [\n      {\n        \"action\": \"login\",\n        \"resource_type\": \"auth\",\n        \"user_name\": \"张三\",\n        \"timestamp\": \"2024-12-02T10:30:00Z\"\n      },\n      {\n        \"action\": \"permission_granted\",\n        \"resource_type\": \"workspace\",\n        \"workspace_name\": \"我的项目\",\n        \"timestamp\": \"2024-12-02T09:15:00Z\"\n      }\n    ]\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "工作空间统计",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/workspace-stats/550e8400-e29b-41d4-a716-4466554403/",
+							"host": [
+								"localhost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "工作空间统计获取成功",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "http://localhost:8000/api/auth/workspace-stats/550e8400-e29b-41d4-a716-4466554403/"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"success\": true,\n  \"stats\": {\n    \"member_count\": 25,\n    \"active_members\": 22,\n    \"guest_count\": 8,\n    \"total_files\": 156,\n    \"storage_used\": \"2.5\",\n    \"storage_limit\": 10,\n    \"recent_activities\": [\n      {\n        \"action\": \"file_uploaded\",\n        \"resource_name\": \"项目文档.pdf\",\n        \"user_name\": \"张三\",\n        \"timestamp\": \"2024-12-02T09:10:00Z\"\n      },\n      {\n        \"action\": \"permission_granted\",\n        \"resource_type\": \"workspace\",\n        \"workspace_name\": \"我的项目\",\n        \"user_name\": \"张三\",\n        \"timestamp\": \"2024-12-02T09:05:00Z\"\n      }\n    ]\n  }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8000/api/auth",
+			"description": "API基础URL"
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+			"description": "JWT访问令牌"
+		},
+		{
+			"key": "REFRESH_TOKEN",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA0MjEwMDEzMjEwIiwidXVudSI1IiwiZXhwIjoiaHR0cHM6LyJlbWFpbCI6ImN1cCI6ImFtYWlsXCI6InBtIjoiNzMifTllIl9pbmciIsInR5cCI6IiwiYXVlcmUiOiJjb20iOjQ2ODk0MTY3In0",
+			"description": "JWT刷新令牌"
+		}
+	]
+	]
+}
