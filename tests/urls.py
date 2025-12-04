@@ -13,7 +13,7 @@ from rest_framework import status
 import json
 
 # 导入多租户认证模块的URL
-from multi_tenant_auth.api.urls as auth_urls
+from multi_tenant_auth.api.urls import urlpatterns as auth_urls
 from multi_tenant_auth.decorators import require_permission
 from multi_tenant_auth.models import User, Workspace
 

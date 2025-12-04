@@ -1,0 +1,98 @@
+MIT License
+
+Copyright (c) 2024 Jindequan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## ⚠️ 商业使用和分发限制
+
+本项目采用 MIT 许可证，但作者保留以下商业使用限制：
+
+### 🚫 禁止的行为：
+
+1. **禁止二开收费**
+   - 不得将本项目稍作修改后作为付费产品出售
+   - 不得基于本项目创建闭源的商业产品并进行收费
+   - 不得将本项目的核心功能包装成商业 SaaS 服务进行收费
+
+2. **禁止商业化滥用**
+   - 不得将本项目用于纯商业牟利目的而进行大规模分发
+   - 不得将本项目集成到商业产品中作为主要功能进行收费
+   - 不得以本项目为基础创建商业服务并收取订阅费或许可费
+
+3. **禁止声称所有权**
+   - 不得移除或修改原始版权信息和作者署名
+   - 不得声称本项目是您自己的原创作品
+   - 不得以误导性的方式暗示您拥有本项目的版权
+
+### ✅ 允许的行为：
+
+1. **个人和学习用途**
+   - 个人学习、研究和教育使用
+   - 非商业性项目使用
+   - 开源项目集成使用
+
+2. **开源项目集成**
+   - 在开源项目中集成使用
+   - 基于本项目创建新的开源项目
+   - 在商业项目内部使用（不能作为主要付费功能）
+
+3. **定制和修改**
+   - 个人或内部使用时可以进行修改
+   - 可以用于商业项目的内部认证系统
+   - 可以基于本项目创建自定义解决方案（但不能直接收费）
+
+### 📝 商业使用指南
+
+如果您希望将本项目用于商业目的，请：
+
+1. **联系作者获取商业许可**
+   - 邮箱：jindequan@example.com
+   - 说明您的具体使用场景和商业模式
+
+2. **遵循开源精神**
+   - 如果您基于本项目创建了有价值的功能，请考虑回馈社区
+   - 保持项目的开源性质
+   - 尊重原作者的劳动成果
+
+3. **正确署名**
+   - 在产品中适当标注使用了本项目
+   - 保留原始的版权信息
+   - 遵循 MIT 许可证的精神
+
+### ⚖️ 违规处理
+
+如发现违反上述限制的行为，作者保留采取以下措施的权利：
+
+1. 要求立即停止侵权行为
+2. 要求移除相关产品或服务
+3. 通过法律途径维护合法权益
+4. 在开源社区公开违规行为
+
+### 📞 联系方式
+
+- **作者**: Jindequan
+- **邮箱**: jindequan@example.com
+- **GitHub**: https://github.com/Jindequan/multi_tenant_auth
+
+---
+
+**本项目旨在为开发者社区提供高质量的开源多租户认证解决方案，请遵守上述条款，共同维护良好的开源生态。**

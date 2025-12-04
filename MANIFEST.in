@@ -1,0 +1,42 @@
+# 包含额外的文件到分发包中
+
+# 文档文件
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+
+# 配置文件
+include pyproject.toml
+include requirements.txt
+include requirements-dev.txt
+
+# 模板文件
+recursive-include multi_tenant_auth/templates *
+
+# 静态文件
+recursive-include multi_tenant_auth/static *
+
+# 数据库迁移
+recursive-include multi_tenant_auth/migrations *.py
+
+# 管理命令
+recursive-include multi_tenant_auth/management *.py
+
+# 国际化文件
+recursive-include multi_tenant_auth/locale *
+
+# API 文件
+recursive-include multi_tenant_auth/api *.py
+
+# 排除不需要的文件
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .coverage
+global-exclude .pytest_cache
+prune multi_tenant_auth/tests
